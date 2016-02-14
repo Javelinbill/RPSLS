@@ -263,12 +263,14 @@ public class GameScreen extends AbstractScreen {
 		gameInstance.camera.unproject(input);
 
 		if (aboutButton.colisionRect.contains(input.x, input.y)) {
+			gameInstance.clickSound.play();
 			aboutButton.selected = true;
 		} else {
 			aboutButton.selected = false;
 		}
 
 		if (rulesButton.colisionRect.contains(input.x, input.y)) {
+			gameInstance.clickSound.play();
 			rulesButton.selected = true;
 		} else {
 			rulesButton.selected = false;
@@ -276,12 +278,14 @@ public class GameScreen extends AbstractScreen {
 
 		if (closeButton.colisionRect.contains(input.x, input.y)) {
 			closeButton.selected = true;
+			gameInstance.clickSound.play();
 		} else {
 			closeButton.selected = false;
 		}
 		
 		if (playAgainButton.colisionRect.contains(input.x, input.y)) {
 			playAgainButton.selected = true;
+			gameInstance.clickSound.play();
 		} else {
 			playAgainButton.selected = false;
 		}

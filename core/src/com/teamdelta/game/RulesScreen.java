@@ -246,6 +246,7 @@ public class RulesScreen extends AbstractScreen {
 		gameInstance.camera.unproject(input);
 
 		if (closeButton.colisionRect.contains(input.x, input.y)) {
+			gameInstance.clickSound.play();
 			closeButton.selected = true;
 		} else {
 			closeButton.selected = false;

@@ -3,7 +3,7 @@ package com.teamdelta.game;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -47,7 +47,7 @@ public class Main extends Game {
 	
 	//--Game assets
 	TextureAtlas gameAtlas;
-	Sound clickSound;
+	Music clickSound;
 
 	//--Entity Information
 	RPSLSEntity rockEntity;
@@ -74,6 +74,8 @@ public class Main extends Game {
 		assetMgr.load("game.pack", TextureAtlas.class);
 		assetMgr.finishLoading();
 		gameAtlas = assetMgr.get("game.pack", TextureAtlas.class);
+		clickSound = Gdx.audio.newMusic(Gdx.files.internal("buttonClick.mp3"));
+		clickSound.setVolume(0.15f);
 
 		createEntities();
 

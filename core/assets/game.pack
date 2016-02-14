@@ -1,3 +1,14 @@
+bigBangTheory.jpg
+format: RGBA8888
+filter: MipMapLinearLinear,Nearest
+repeat: none
+START_SCREEN_IMAGE
+rotate: false
+  xy: 0, 0
+  size: 800, 600
+  orig: 800, 600
+  offset: 0, 0
+  index: -1
 
 game.png
 format: RGBA8888
