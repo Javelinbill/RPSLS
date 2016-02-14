@@ -10,6 +10,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.teamdelta.game.entities.EntityNames;
+import com.teamdelta.game.entities.RPSLSEntity;
 
 /**
  * 
@@ -31,7 +33,10 @@ public class Main extends Game {
 	OrthographicCamera camera;
 	Viewport viewport;
 	AssetManager assetMgr;
-	
+
+	//--GameLogic
+	GameLogic gameLogic;
+
 	//--Screens
 	StartScreen startScreen;
 	GameScreen gameScreen;
@@ -43,8 +48,14 @@ public class Main extends Game {
 	//--Game assets
 	TextureAtlas gameAtlas;
 	Sound clickSound;
-	
-	
+
+	//--Entity Information
+	RPSLSEntity rockEntity;
+	RPSLSEntity paperEntity;
+	RPSLSEntity scissorsEntity;
+	RPSLSEntity lizardEntity;
+	RPSLSEntity spockEntity;
+
 	float delta;
 	//
 	final int WIDTH = 800;
@@ -62,8 +73,11 @@ public class Main extends Game {
 		
 		assetMgr.load("game.pack", TextureAtlas.class);
 		assetMgr.finishLoading();
-		
-		
+		gameAtlas = assetMgr.get("game.pack", TextureAtlas.class);
+
+		createEntities();
+
+		gameLogic = new GameLogic(this);
 		startScreen = new StartScreen(this);
 		gameScreen = new GameScreen(this);
 		aboutScreen = new AboutScreen(this);
@@ -72,6 +86,7 @@ public class Main extends Game {
 		currentScreen = startScreen;
 		currentScreen.show();
 	}
+
 	@Override
 	public void dispose(){
 		currentScreen.dispose();
@@ -83,11 +98,13 @@ public class Main extends Game {
 	public void pause() {
 		currentScreen.pause();
 	}
+
 	@Override
 	public void resume() {
 		currentScreen.resume();
 		System.out.println("Main Resume");
 	}
+
 	@Override
 	public void render(){
 		delta = Gdx.graphics.getDeltaTime();
@@ -104,12 +121,25 @@ public class Main extends Game {
 		}
 		
 	}
-	
-	
+
 	@Override
 	public void resize(int width, int height){
 		viewport.update(width, height);
 		viewport.apply();
 	}
 
+	public void createEntities() {
+		String rock = EntityNames.ROCK.toString();
+		String paper = EntityNames.PAPER.toString();
+		String scissors = EntityNames.SCISSORS.toString();
+		String lizard = EntityNames.LIZARD.toString();
+		String spock = EntityNames.SPOCK.toString();
+
+		//Create RPSLSEntities
+		rockEntity 		= new RPSLSEntity(rock, gameAtlas.findRegion(rock));
+		paperEntity 	= new RPSLSEntity(paper, gameAtlas.findRegion(paper));
+		scissorsEntity 	= new RPSLSEntity(scissors, gameAtlas.findRegion(scissors));
+		lizardEntity 	= new RPSLSEntity(lizard, gameAtlas.findRegion(lizard));
+		spockEntity 	= new RPSLSEntity(spock, gameAtlas.findRegion(spock));
+	}
 }
